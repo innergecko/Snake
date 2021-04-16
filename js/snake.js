@@ -2,7 +2,8 @@ export default class Snake {
     constructor(scene) {
         this.scene = scene;
         this.timeLastMove = 0;
-        this.moveInterval = 150;
+        this.moveInterval = 200;
+        this.velocityIncrease = 5;
 
         this.tileSize = 16;
 
@@ -11,12 +12,12 @@ export default class Snake {
 
         this.body.push(
             this.box = this.scene.add
-                .rectangle(this.scene.game.config.width / 2, this.scene.game.config.height / 2, this.tileSize, this.tileSize, 0xff0000)
+                .rectangle(this.scene.game.config.width / 2, this.scene.game.config.height / 2, this.tileSize, this.tileSize, 0x000000)
                 .setOrigin(0)
         );
 
         this.apple = this.scene.add
-            .rectangle(32, 32, this.tileSize, this.tileSize, 0x00ff00).setOrigin(0);
+            .rectangle(32, 32, this.tileSize, this.tileSize, 0xffffff).setOrigin(0);
             this.placeApple();
         this.scene.input.keyboard.on('keydown', e => {
             this.keydown(e);
@@ -75,8 +76,8 @@ export default class Snake {
         if(this.apple.x === x && this.apple.y === y) {
             this.placeApple();
             this.body.push(
-                this.scene.add.rectangle(0, 0, this.tileSize, this.tileSize, 0xff0000).setOrigin(0));
-            this.moveInterval = this.moveInterval - 5;
+                this.scene.add.rectangle(0, 0, this.tileSize, this.tileSize, 0x000000).setOrigin(0));
+            this.moveInterval = this.moveInterval - this.velocityIncrease;
         }
     }
 

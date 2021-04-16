@@ -5,7 +5,9 @@ const config = {
     height: 640,
     type: Phaser.auto,
     parent: 'game-canvas',
-    scene: [MainScene]
+    backgroundColor: '#efefef',
+    scene: [MainScene],
+    
 }
 
 new Phaser.Game(config);
