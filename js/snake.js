@@ -2,7 +2,7 @@ export default class Snake {
     constructor(scene) {
         this.scene = scene;
         this.timeLastMove = 0;
-        this.moveInterval = 1000;
+        this.moveInterval = 250;
 
         this.direction = Phaser.Math.Vector2.RIGHT;
         this.body = [];
@@ -50,12 +50,22 @@ export default class Snake {
     }
 
     update(time) {
-        this.body[0].x += this.direction.x * 16;
-        this.body[0].y += this.direction.y * 16;
+        if (time >= this.timeLastMove + this.moveInterval) {
+            this.timeLastMove = time;
+            this.move();
+        }
     }
 
     move() {
+        for(let i = this.body.length -1; i > 0; i--) {
+            this.body[i].x = this.body[i-1].x;
+            this.body[i].y = this.body[i-1].y;
+        }
 
+        // this.body[1].x = this.body[0].x;
+        // this.body[1].y = this.body[0].y;
+        this.body[0].x += this.direction.x * 16;
+        this.body[0].y += this.direction.y * 16;
     }
 }
 
