@@ -1,4 +1,4 @@
-class MainScene extends Phaser.Scene {
+export default class MainScene extends Phaser.Scene {
     constructor () {
         super("MainScene");
     }
@@ -8,6 +8,6 @@ class MainScene extends Phaser.Scene {
     create () {}
 
     update (time) {
-        
+        console.log('updating...');
     }
 }
