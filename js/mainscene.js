@@ -1,3 +1,5 @@
+import Snake from "./snake.js"
+
 export default class MainScene extends Phaser.Scene {
     constructor () {
         super("MainScene");
@@ -5,9 +7,11 @@ export default class MainScene extends Phaser.Scene {
 
     preload () {}
 
-    create () {}
+    create () {
+        this.snake = new Snake(this);
+    }
 
     update (time) {
-        console.log('updating...');
+        this.snake.update(time);
     }
 }
