@@ -1,6 +1,7 @@
 export default class Snake {
     constructor(scene) {
         this.scene = scene;
+        this.direction = Phaser.Math.Vector2.RIGHT;
         this.body = [];
 
         this.body.push(
@@ -21,18 +22,33 @@ export default class Snake {
     }
 
     keydown(event) {
-        if (event.keyCode == 37) { //Left
-        }
-        else if (event.keyCode == 38) { //Up
-        }
-        else if (event.keyCode == 39) { //Right
-        }
-        else if (event.keyCode == 40) { //Down
+        // if (event.keyCode == 37) { //Left
+        // }
+        // else if (event.keyCode == 38) { //Up
+        // }
+        // else if (event.keyCode == 39) { //Right
+        // }
+        // else if (event.keyCode == 40) { //Down
+        // }
+        switch (event.keyCode) {
+            case 37: //Left
+                this.direction = Phaser.Math.Vector2.LEFT;
+                break;
+            case 38: //Up
+            this.direction = Phaser.Math.Vector2.UP;
+                break;
+            case 39: //Right
+            this.direction = Phaser.Math.Vector2.RIGHT;
+                break;
+            case 40: //Down
+            this.direction = Phaser.Math.Vector2.DOWN;
+                break;
         }
     }
 
     update(time) {
-        this.body[0].x += 1;
+        this.body[0].x += this.direction.x;
+        this.body[0].y += this.direction.y;
     }
 }
 
