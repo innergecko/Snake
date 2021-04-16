@@ -6,3 +6,5 @@ const config = {
     scene: []
 }
 
+new Phaser.Game(config);
+
