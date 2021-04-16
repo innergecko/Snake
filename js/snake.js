@@ -1,6 +1,9 @@
 export default class Snake {
     constructor(scene) {
         this.scene = scene;
+        this.timeLastMove = 0;
+        this.moveInterval = 1000;
+
         this.direction = Phaser.Math.Vector2.RIGHT;
         this.body = [];
 
@@ -47,8 +50,13 @@ export default class Snake {
     }
 
     update(time) {
-        this.body[0].x += this.direction.x;
-        this.body[0].y += this.direction.y;
+        this.body[0].x += this.direction.x * 16;
+        this.body[0].y += this.direction.y * 16;
+    }
+
+    move() {
+
     }
 }
+
 
