@@ -2,7 +2,7 @@ export default class Snake {
     constructor(scene) {
         this.scene = scene;
         this.timeLastMove = 0;
-        this.moveInterval = 150;
+        this.moveInterval = 200;
 
         this.tileSize = 16;
 
@@ -63,16 +63,31 @@ export default class Snake {
         }
     }
 
+    checkApple(x, y) {
+        if(this.apple.x === x && this.apple.y === y) {
+            this.placeApple();
+            this.body.push(
+                this.scene.add.rectangle(0, 0, this.tileSize, this.tileSize, 0xffffff).setOrigin(0));
+        }
+    }
+
     move() {
+        let x = this.body[0].x + this.direction.x * this.tileSize;
+        let y = this.body[0].y + this.direction.y * this.tileSize;
+
+        this.checkApple(x, y);
+
         for(let i = this.body.length -1; i > 0; i--) {
             this.body[i].x = this.body[i-1].x;
             this.body[i].y = this.body[i-1].y;
         }
 
+        this.body[0].x = x;
+        this.body[0].y = y;
+
         // this.body[1].x = this.body[0].x;
         // this.body[1].y = this.body[0].y;
-        this.body[0].x += this.direction.x * this.tileSize;
-        this.body[0].y += this.direction.y * this.tileSize;
+        
     }
 }
 
